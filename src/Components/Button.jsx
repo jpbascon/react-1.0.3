@@ -1,11 +1,13 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-const Button = ({ setTipAmount, currentBill, tipCount }) => {
+const Button = ({ setTipAmount, currentBill, tipCount, tipAmount }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const shouldShowInput = isHovered || isFocused;
   const tips = [5, 10, 15, 25, 50];
 
+  useEffect(() => {
+  }, [tipAmount])
   return (
     <>
       {tips.map((tip) => (
@@ -24,7 +26,11 @@ const Button = ({ setTipAmount, currentBill, tipCount }) => {
         {shouldShowInput ?
           <input
             onFocus={() => setIsFocused(true)}
-            onBlur={() => setIsFocused(false)}
+            /* onBlur={() => setIsFocused(false)} */
+            onChange={(e) => {
+              setTipAmount((e.target.value / 100) * currentBill / tipCount);
+              if (e.target.value === '') setIsFocused(false)
+            }}
           />
           :
           <p>Custom</p>

@@ -6,7 +6,7 @@ const LeftSection = () => {
   const [currentBill, setCurrentBill] = useState('');
   const [tipCount, setTipCount] = useState('');
   const [totalBill, setTotalBill] = useState(0);
-  const [tipAmount, setTipAmount] = useState(5 / 100);
+  const [tipAmount, setTipAmount] = useState(0);
 
   const tipCountValue = (e) => {
     const Count = e;
@@ -14,9 +14,9 @@ const LeftSection = () => {
     const numBill = Number(currentBill);
     const numTip = Number(tipAmount);
 
-    if (numTip || !numTip <= 0) {
-      setTotalBill(numBill / numCount + numTip);
-    } else setTotalBill(numBill);
+    if (numTip || !numTip <= 0) setTotalBill(numBill / numCount + numTip);
+    else if (numTip === undefined) setTotalBill(numBill / numCount);
+    else setTotalBill(numBill)
   }
 
   useEffect(() => {
@@ -46,7 +46,7 @@ const LeftSection = () => {
         <div className="middle">
           <p>Select Tip %</p>
           <div>
-            <Button setTipAmount={setTipAmount} currentBill={currentBill} tipCount={tipCount} tipCountValue={tipCountValue} />
+            <Button setTipAmount={setTipAmount} currentBill={currentBill} tipCount={tipCount} tipAmount={tipAmount} />
           </div>
         </div>
         <div className="bottom">
@@ -63,7 +63,8 @@ const LeftSection = () => {
           </div>
         </div>
       </div >
-      <RightSection tipAmount={tipAmount} totalBill={totalBill} tipCount={tipCount} currentBill={currentBill} setTipAmount={setTipAmount} setTotalBill={setTotalBill} setTipCount={setTipCount} setCurrentBill={setCurrentBill} />
+      <RightSection tipAmount={tipAmount} totalBill={totalBill} tipCount={tipCount} currentBill={currentBill}
+        setTipAmount={setTipAmount} setTotalBill={setTotalBill} setTipCount={setTipCount} setCurrentBill={setCurrentBill} />
     </>
   )
 }
