@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-grey-900: hsl(183, 100%, 15%);
+  --color-grey-500: hsl(186, 14%, 43%);
+  --color-grey-400: hsl(184, 14%, 56%);
+  --color-grey-200: hsl(185, 41%, 84%);
+  --color-grey-50: hsl(189, 47%, 97%);
+  --color-white: hsl(0, 100%, 100%);
+  --color-green-400: hsl(172, 67%, 45%)
+}
+
+@layer base {
+  body {
+    font-family: "Space Mono", serif;
+    background: var(--color-grey-200);
+  }
+}
+
+@layer components {
+  .wrapper {
+    @apply flex flex-col justify-center gap-[5vw] items-center min-h-screen max-w-6xl mx-auto;
+  }
+
+  .container {
+    @apply flex flex-col lg:flex-row gap-10 min-w-sm max-w-5xl h-full bg-white p-10 rounded-3xl shadow-lg;
+  }
+
+  .left-section {
+    @apply flex flex-col gap-10 min-w-sm w-full h-auto;
+
+    & p {
+      @apply text-grey-500 font-bold;
+    }
+
+    & .top {
+      @apply flex flex-col gap-2 w-full;
+    }
+
+    & .top div {
+      @apply flex justify-between items-center bg-grey-50 w-full h-auto px-4 py-1 rounded-md;
+    }
+
+    & .top div input {
+      @apply text-right text-grey-900 text-2xl font-bold focus:outline-hidden caret-grey-500;
+    }
+
+    & .middle {
+      @apply flex flex-col gap-2 w-full;
+    }
+
+    & .middle div {
+      @apply grid grid-cols-2 gap-4 lg:grid-cols-3 w-full;
+    }
+
+    & .middle button {
+      @apply bg-grey-900 text-white text-2xl font-bold py-2 rounded-md cursor-pointer;
+    }
+
+    & .middle div div {
+      @apply flex justify-center items-center bg-grey-50 text-green-400 text-[1.5rem] rounded-md;
+    }
+
+    & .middle div div input {
+      @apply outline-hidden max-w-full rounded-md border-solid border-green-400 font-bold text-right pr-2 py-[3.5px] border-[2.5px];
+    }
+
+    & .bottom {
+      @apply flex flex-col gap-2 w-full;
+    }
+
+    & .bottom div {
+      @apply flex justify-between items-center bg-grey-50 w-full h-auto px-4 py-1 rounded-md;
+    }
+
+    & .bottom div input {
+      @apply text-right text-grey-900 text-2xl font-bold focus:outline-hidden caret-grey-500 appearance-none;
+    }
+  }
+
+  .right-section {
+    @apply flex flex-col bg-grey-900 min-w-sm w-full min-h-[300px] p-8 lg:p-10 pt-15 rounded-xl;
+
+    & p {
+      @apply font-bold text-white;
+    }
+
+    & .right-container {
+      @apply flex flex-col gap-5 lg:gap-10 flex-1 min-w-full;
+    }
+
+    & .top {
+      @apply flex justify-between items-center;
+    }
+
+    & .top div {
+      @apply flex flex-col;
+    }
+
+    & .top h1 {
+      @apply text-5xl font-bold text-green-400;
+    }
+
+    & button {
+      @apply text-xl w-full bg-green-400/15 text-grey-900 font-bold cursor-pointer py-2.5 rounded-md;
+    }
+  }
+}
+
+.no-arrows[type='number'] {
+  -moz-appearance: textfield;
+}
