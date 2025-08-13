@@ -24,11 +24,11 @@
   }
 
   .container {
-    @apply flex flex-col lg:flex-row gap-10 min-w-xs max-w-5xl h-full bg-white p-10 rounded-3xl shadow-lg;
+    @apply flex flex-col lg:flex-row gap-10 max-w-5xl h-full bg-white p-10 rounded-3xl shadow-lg;
   }
 
   .left-section {
-    @apply flex flex-col gap-10 min-w-sm w-full h-auto;
+    @apply flex flex-col gap-10 w-full h-auto;
 
     & p {
       @apply text-grey-500 font-bold;
@@ -43,7 +43,7 @@
     }
 
     & .top div input {
-      @apply text-right text-grey-900 text-2xl font-bold focus:outline-hidden caret-grey-500;
+      @apply w-full text-right text-grey-900 text-2xl font-bold focus:outline-hidden caret-grey-500;
     }
 
     & .middle {
@@ -55,7 +55,7 @@
     }
 
     & .middle button {
-      @apply bg-grey-900 text-white text-2xl font-bold py-2 rounded-md cursor-pointer;
+      @apply bg-grey-900 text-white text-2xl font-bold py-2 rounded-md cursor-pointer w-full;
     }
 
     & .middle div div {
@@ -63,7 +63,7 @@
     }
 
     & .middle div div input {
-      @apply outline-hidden max-w-full rounded-md border-solid border-green-400 font-bold text-right pr-2 py-[3.5px] border-[2.5px];
+      @apply outline-hidden w-full rounded-md border-solid border-green-400 font-bold text-right pr-2 py-[3.5px] border-[2.5px];
     }
 
     & .bottom {
@@ -75,12 +75,12 @@
     }
 
     & .bottom div input {
-      @apply text-right text-grey-900 text-2xl font-bold focus:outline-hidden caret-grey-500 appearance-none;
+      @apply w-full text-right text-grey-900 text-2xl font-bold focus:outline-hidden caret-grey-500 appearance-none;
     }
   }
 
   .right-section {
-    @apply flex flex-col bg-grey-900 min-w-sm w-full min-h-[300px] p-8 lg:p-10 pt-15 rounded-xl;
+    @apply flex flex-col bg-grey-900 w-full min-h-[300px] p-8 lg:p-10 pt-15 rounded-xl;
 
     & p {
       @apply font-bold text-white;
@@ -103,7 +103,7 @@
     }
 
     & button {
-      @apply text-xl w-full bg-green-400/15 text-grey-900 font-bold cursor-pointer py-2.5 rounded-md;
+      @apply text-lg lg:text-xl w-full bg-green-400/15 text-grey-900 font-bold cursor-pointer py-2.5 rounded-md;
     }
   }
 }
