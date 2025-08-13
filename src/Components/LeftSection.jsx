@@ -3,24 +3,20 @@ import Button from './Button.jsx';
 import { useState, useEffect } from 'react';
 
 const LeftSection = () => {
-  const [currentBill, setCurrentBill] = useState('');
-  const [tipCount, setTipCount] = useState('');
-  const [totalBill, setTotalBill] = useState(0);
-  const [tipAmount, setTipAmount] = useState(0);
+  const [currentBill, setCurrentBill] = useState(''); //Current bill
+  const [tipCount, setTipCount] = useState(''); //Current persons tipped
+  const [currentTip, setCurrentTip] = useState('');
+  const [totalBill, setTotalBill] = useState(0); //Total bill
+  const [tipAmount, setTipAmount] = useState(0); //Total tip amount
 
-  // Calculate total when any relevant state changes
   useEffect(() => {
-    const numBill = Number(currentBill);
-    const numCount = Number(tipCount);
-    const numTip = Number(tipAmount);
+    const numTipCount = Number(tipCount);
+    const numTipAmount = Number(tipAmount);
+    const numCurrentBill = Number(currentBill);
 
-    if (!numBill || !numCount) {
-      setTotalBill(0);
-      return;
-    }
-
-    setTotalBill(numBill / numCount + numTip);
-  }, [currentBill, tipCount, tipAmount]); // ← depend on all inputs
+    if (!numCurrentBill || !numTipCount) setTotalBill(0)
+    setTotalBill(numCurrentBill / numTipCount + numTipAmount);
+  }, [currentBill, tipCount, tipAmount]);
 
   return (
     <>
@@ -44,10 +40,11 @@ const LeftSection = () => {
           <p>Select Tip %</p>
           <div>
             <Button
+              setCurrentTip={setCurrentTip}
               setTipAmount={setTipAmount}
+              currentTip={currentTip}
               currentBill={currentBill}
               tipCount={tipCount}
-              tipAmount={tipAmount}
             />
           </div>
         </div>

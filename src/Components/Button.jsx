@@ -1,32 +1,27 @@
 import { useState, useEffect } from 'react';
 
-const Button = ({ setTipAmount, currentBill, tipCount, tipAmount }) => {
+const Button = ({ setTipAmount, currentBill, tipCount, setCurrentTip, currentTip }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const shouldShowInput = isHovered || isFocused;
   const tips = [5, 10, 15, 25, 50];
 
-  const renderThis = (e) => {
-    const button = e;
-    const personDivided = Number(tipCount)
-    setTipAmount(button);
+  useEffect(() => {
+    const numTip = Number(currentTip);
+    const numBill = Number(currentBill);
+    const numCount = Number(tipCount);
 
-    if (button === undefined || personDivided === undefined) setTipAmount(currentBill);
-    else setTipAmount((button / 100) * currentBill / tipCount);
-  }
+    if (!numBill) setTipAmount(0)
 
-  useEffect(() => {
-  }, [tipAmount])
-  useEffect(() => {
-  }, [currentBill])
-  useEffect(() => {
-  }, [tipCount])
+    setTipAmount((numTip / 100) * numBill / tipCount);
+  }, [currentBill, tipCount, currentTip])
+
   return (
     <>
       {tips.map((tip) => (
         <button
           key={tip}
-          onClick={() => renderThis(tip)}
+          onClick={() => setCurrentTip(tip)}
           className="hover:bg-green-400 hover:text-grey-900 duration-75"
         >
           {tip}%
@@ -39,9 +34,8 @@ const Button = ({ setTipAmount, currentBill, tipCount, tipAmount }) => {
         {shouldShowInput ?
           <input
             onFocus={() => setIsFocused(true)}
-            /* onBlur={() => setIsFocused(false)} */
             onChange={(e) => {
-              renderThis(e.target.value);
+              setCurrentTip(e.target.value);
               if (e.target.value === '') setIsFocused(false)
             }}
           />
