@@ -1,5 +1,4 @@
 import LeftSection from './Components/LeftSection.jsx';
-import RightSection from './Components/RightSection.jsx';
 
 function App() {
   return (

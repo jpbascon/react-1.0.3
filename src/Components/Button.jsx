@@ -6,14 +6,27 @@ const Button = ({ setTipAmount, currentBill, tipCount, tipAmount }) => {
   const shouldShowInput = isHovered || isFocused;
   const tips = [5, 10, 15, 25, 50];
 
+  const renderThis = (e) => {
+    const button = e;
+    const personDivided = Number(tipCount)
+    setTipAmount(button);
+
+    if (button === undefined || personDivided === undefined) setTipAmount(currentBill);
+    else setTipAmount((button / 100) * currentBill / tipCount);
+  }
+
   useEffect(() => {
   }, [tipAmount])
+  useEffect(() => {
+  }, [currentBill])
+  useEffect(() => {
+  }, [tipCount])
   return (
     <>
       {tips.map((tip) => (
         <button
           key={tip}
-          onClick={() => setTipAmount((tip / 100) * currentBill / tipCount)}
+          onClick={() => renderThis(tip)}
           className="hover:bg-green-400 hover:text-grey-900 duration-75"
         >
           {tip}%
@@ -28,7 +41,7 @@ const Button = ({ setTipAmount, currentBill, tipCount, tipAmount }) => {
             onFocus={() => setIsFocused(true)}
             /* onBlur={() => setIsFocused(false)} */
             onChange={(e) => {
-              setTipAmount((e.target.value / 100) * currentBill / tipCount);
+              renderThis(e.target.value);
               if (e.target.value === '') setIsFocused(false)
             }}
           />
