@@ -20,7 +20,7 @@
 
 @layer components {
   .wrapper {
-    @apply flex flex-col justify-center gap-[5vw] items-center min-h-screen max-w-6xl mx-auto;
+    @apply flex flex-col justify-center gap-[5vw] items-center min-h-screen max-w-6xl mx-auto px-10 py-5 lg:p-0;
   }
 
   .container {
@@ -99,11 +99,11 @@
     }
 
     & .top h1 {
-      @apply text-5xl font-bold text-green-400;
+      @apply text-3xl font-bold text-green-400 md:text-5xl;
     }
 
     & button {
-      @apply text-lg lg:text-xl w-full bg-green-400/15 text-grey-900 font-bold cursor-pointer py-2.5 rounded-md;
+      @apply text-base lg:text-xl w-full bg-green-400/15 text-grey-900 font-bold cursor-pointer py-2.5 rounded-md;
     }
   }
 }
