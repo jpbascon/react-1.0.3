@@ -24,7 +24,7 @@
   }
 
   .container {
-    @apply flex flex-col lg:flex-row gap-10 min-w-sm max-w-5xl h-full bg-white p-10 rounded-3xl shadow-lg;
+    @apply flex flex-col lg:flex-row gap-10 min-w-xs max-w-5xl h-full bg-white p-10 rounded-3xl shadow-lg;
   }
 
   .left-section {
