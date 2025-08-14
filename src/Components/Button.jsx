@@ -12,8 +12,7 @@ const Button = ({ setTipAmount, currentBill, tipCount, setCurrentTip, currentTip
     const numCount = Number(tipCount);
 
     if (!numBill) setTipAmount(0)
-
-    setTipAmount((numTip / 100) * numBill / tipCount);
+    else setTipAmount((numTip / 100) * numBill / numCount);
   }, [currentBill, tipCount, currentTip])
 
   return (
@@ -33,6 +32,7 @@ const Button = ({ setTipAmount, currentBill, tipCount, setCurrentTip, currentTip
       >
         {shouldShowInput ?
           <input
+            value={currentTip}
             onFocus={() => setIsFocused(true)}
             onChange={(e) => {
               setCurrentTip(e.target.value);

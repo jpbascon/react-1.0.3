@@ -4,7 +4,9 @@ const RightSection = ({
   setTipAmount,
   setTotalBill,
   setTipCount,
-  setCurrentBill
+  setCurrentBill,
+  setValueCheck,
+  setCurrentTip
 }) => {
   // Format values safely, defaulting to 0
   const formattedTip = Number(tipAmount || 0).toFixed(2);
@@ -15,6 +17,8 @@ const RightSection = ({
     setTotalBill(0);
     setCurrentBill('');
     setTipCount('');
+    setValueCheck(false);
+    setCurrentTip('');
   };
 
   return (

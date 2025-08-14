@@ -3,6 +3,7 @@ import Button from './Button.jsx';
 import { useState, useEffect } from 'react';
 
 const LeftSection = () => {
+  const [valueCheck, setValueCheck] = useState(false);
   const [currentBill, setCurrentBill] = useState(''); //Current bill
   const [tipCount, setTipCount] = useState(''); //Current persons tipped
   const [currentTip, setCurrentTip] = useState('');
@@ -13,10 +14,16 @@ const LeftSection = () => {
     const numTipCount = Number(tipCount);
     const numTipAmount = Number(tipAmount);
     const numCurrentBill = Number(currentBill);
+    const numCurrentTip = Number(currentTip)
 
     if (!numCurrentBill || !numTipCount) setTotalBill(0)
-    setTotalBill(numCurrentBill / numTipCount + numTipAmount);
-  }, [currentBill, tipCount, tipAmount]);
+    else setTotalBill(numCurrentBill / numTipCount + numTipAmount);
+    if (numTipCount && !numCurrentBill && !numCurrentTip) setValueCheck(false);
+    else if (!numTipCount && (!!numCurrentBill ^ !!numCurrentTip)) setValueCheck(true);
+    else if (!numTipCount && numCurrentBill && numCurrentTip) setValueCheck(true);
+    else setValueCheck(false);
+
+  }, [currentBill, tipCount, tipAmount, valueCheck, tipCount, currentTip]);
 
   return (
     <>
@@ -50,8 +57,12 @@ const LeftSection = () => {
         </div>
 
         <div className="bottom">
-          <p>Number of People</p>
-          <div>
+          <span className="flex justify-between">
+            <p>Number of People</p>
+            {valueCheck && <p className="text-red-500">Can't be zero</p>}
+          </span>
+          <div
+            className={valueCheck && "border-2 border-red-500"}>
             <img className="h-[50%]" src="./icon-person.svg" />
             <input
               className="no-arrows"
@@ -59,7 +70,7 @@ const LeftSection = () => {
               inputMode="numeric"
               placeholder="0"
               value={tipCount}
-              onChange={(e) => setTipCount(e.target.value)}
+              onChange={(e) => { setTipCount(String(e.target.value)), setValueCheck(false) }}
             />
           </div>
         </div>
@@ -74,6 +85,8 @@ const LeftSection = () => {
         setTotalBill={setTotalBill}
         setTipCount={setTipCount}
         setCurrentBill={setCurrentBill}
+        setValueCheck={setValueCheck}
+        setCurrentTip={setCurrentTip}
       />
     </>
   );
